@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "version": "1.5",
+    "version": "2.0",
     "name": "Home extension",
     "description": "Perform actions for home usage",
     "icons": {

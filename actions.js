@@ -44,6 +44,51 @@ if (currentHostname === 'www.twitch.tv') {
         },
         10000
     );
+
+    if (window.onclick) {
+        console.log('Window onclick event is in use. Please re-check the script');
+    } else {
+        const addMyPictureInPictureButton = function() {
+            const MY_BUTTON_PICTURE_IN_PICTURE_ID = 'myButtonPictureInPictureId';
+
+            if (document.getElementById(MY_BUTTON_PICTURE_IN_PICTURE_ID)) {
+                return;
+            }
+
+            const playerControlList = document.querySelectorAll('#channel-player div.player-controls__right-control-group');
+            if (playerControlList.length === 0) {
+                return;
+            }
+
+            if (playerControlList.length === 2) {
+                playerControlList.forEach(playerControl => {
+                    const myDiv = document.createElement('div');
+
+                    const myButton = document.createElement('button');
+                    myButton.className = 'dOOPAe';
+                    myButton.setAttribute('id', MY_BUTTON_PICTURE_IN_PICTURE_ID);
+                    myButton.onclick = function() {
+                        const videoList = document.querySelectorAll('video');
+                        if (videoList.length === 1) {
+                            videoList[0].requestPictureInPicture();
+                        } else {
+                            console.error('Single video was not found. Count: [' + videoList.length + ']');
+                        }
+                    };
+
+                    myDiv.append(myButton);
+
+                    playerControl.appendChild(myDiv);
+
+                    console.log('My PIP button added');
+                });
+            } else {
+                console.log('For some reason no 2 payer controls (visible + hidden). Count: [' + playerControlList.length + ']');
+            }
+        }
+
+        window.onclick = addMyPictureInPictureButton;
+    }
 } else {
     console.log('No script for this site');
 }
