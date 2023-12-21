@@ -68,7 +68,7 @@ if (currentHostname === 'www.twitch.tv') {
                     myButton.className = 'dOOPAe';
                     myButton.setAttribute('id', MY_BUTTON_PICTURE_IN_PICTURE_ID);
                     myButton.onclick = function() {
-                        const videoList = document.querySelectorAll('video');
+                        const videoList = document.querySelectorAll('main video');
                         if (videoList.length === 1) {
                             videoList[0].requestPictureInPicture();
                         } else {
